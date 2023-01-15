@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  fitbit-uploader:
+    image: fitbit-uploader
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - FITBIT_CLIENT_ID=
+      - FITBIT_CLIENT_SECRET=
+      - FITBIT_USER_TOKEN=
+      - FITBIT_USER_REFRESH_TOKEN=
+      - FITBIT_ACTIVITY_FILE_PATH=
+      - FITBIT_SLEEP_FILE_PATH=
+      - FITBIT_USER_ID=
+      - FITBIT_UPLOADER_LOGS_DIR=
+    volumes: 
+      - ./%place_path_to_logs_on_host_here%:/logs
+      - ./%place_path_to_dir_with_uploaded_files_on_host_here%:/file_storage

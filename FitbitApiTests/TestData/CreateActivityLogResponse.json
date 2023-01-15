@@ -1,0 +1,19 @@
+﻿{
+  "activityLog": {
+    "activityId": 1010,
+    "activityParentId": 90001,
+    "activityParentName": "Bike",
+    "calories": 200,
+    "description": "Very Leisurely - Less than 10 mph",
+    "distance": 2,
+    "duration": 1800000,
+    "hasStartTime": true,
+    "isFavorite": false,
+    "lastModified": "2019-03-13T21:46:42.620Z",
+    "logId": 20510012273,
+    "name": "Bike",
+    "startDate": "2019-02-05",
+    "startTime": "08:00",
+    "steps": 0
+  }
+}
