@@ -131,7 +131,8 @@ public static class Program
 
             await dataUploader.UploadActivityData(
                 new UserInfo(userId, userToken, userRefreshToken),
-                new ClientInfo(clientId, clientSecret), activityData, cancellationToken);
+                new ClientInfo(clientId, clientSecret), activityData, new RetryPolicy(5, TimeSpan.FromSeconds(30)),
+                cancellationToken);
         }
 
         if (pathToSleepCsv != null)
@@ -143,7 +144,8 @@ public static class Program
 
             await dataUploader.UploadSleepData(
                 new UserInfo(userId, userToken, userRefreshToken),
-                new ClientInfo(clientId, clientSecret), sleepData, cancellationToken);
+                new ClientInfo(clientId, clientSecret), sleepData, new RetryPolicy(5, TimeSpan.FromSeconds(30)),
+                cancellationToken);
         }
     }
 }
