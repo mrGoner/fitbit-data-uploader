@@ -34,6 +34,9 @@ public class FitbitUploader
         {
             var response = await UploadWithPolicy(async userToken =>
                 {
+                    _logger.LogInformation("Trying to upload activity data: {Start} {Duration}", sleepData.SleepStart,
+                        sleepData.Duration);
+                    
                     var response = await fitBitClient.CreateSleepLog(
                         new CreateSleepLogRequest(userInfo.UserId, sleepData.SleepStart, sleepData.Duration),
                         userToken,
@@ -75,6 +78,9 @@ public class FitbitUploader
         {
             var response = await UploadWithPolicy(async userToken =>
             {
+                _logger.LogInformation("Trying to upload activity data: {Start} {Duration}", activityData.ActivityStart,
+                    activityData.Duration);
+                
                 var response = await fitBitClient.CreateActivityLog(
                     new CreateActivityLogRequest(userInfo.UserId, activityData.ActivityCode, activityData.ActivityStart,
                         activityData.Duration, activityData.Distance, ConvertDistanceUnit(activityData.DistanceUnit),
@@ -97,7 +103,7 @@ public class FitbitUploader
             await Task.Delay(response.Quota.TimeToLimitReset, cancellationToken);
         }
 
-        _logger.LogInformation("Upload sleep data complete. Uploaded {Count}", progressCount);
+        _logger.LogInformation("Upload sleep activity complete. Uploaded {Count}", progressCount);
     }
 
     private async Task<(ApiCallsQuota Quota, string Token, string? RefreshToken)> UploadWithPolicy(Func<string, Task<FitbitResponse>> uploadFunc,
